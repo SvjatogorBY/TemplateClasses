@@ -3,6 +3,12 @@
 
 #include <iostream>
 
+template <typename T>
+class TemplateSet;
+
+template <typename T>
+std::ostream& operator<< (std::ostream& out, const TemplateSet<T>& outTemplateSet);
+
 template<class T>
 class TemplateSet
 {
@@ -26,22 +32,7 @@ public:
     bool empty() const;
     size_t size() const;
 
-    friend std::ostream& operator<< (std::ostream& out, const TemplateSet<T>& outTemplateSet)
-    {
-        TemplateSet<T>::Item* current = outTemplateSet.mFirst;
-
-        out << "TemplateSet (size = " << outTemplateSet.mSize << "): ";
-
-        while (current->mNext != nullptr)
-        {
-            out << current->mValue << ", ";
-            current = current->mNext;
-        }
-
-        out << current->mValue << std::endl;
-
-        return out;
-    }
+    friend std::ostream& operator<< <> (std::ostream& out, const TemplateSet<T>& outTemplateSet);
 
 private:
 
@@ -51,6 +42,24 @@ private:
     size_t mSize = 0;
     Item* mFirst = nullptr;
 };
+
+template <typename T>
+std::ostream& operator<< (std::ostream& out, const TemplateSet<T>& outTemplateSet)
+{
+    auto* current = outTemplateSet.mFirst;
+
+    out << "TemplateSet (size = " << outTemplateSet.mSize << "): ";
+
+    while (current->mNext != nullptr)
+    {
+        out << current->mValue << ", ";
+        current = current->mNext;
+    }
+
+    out << current->mValue << std::endl;
+
+    return out;
+}
 
 #endif
 

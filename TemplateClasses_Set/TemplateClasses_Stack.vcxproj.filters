@@ -24,9 +24,6 @@
     <ClCompile Include="TemplateSet_Impl.h">
       <Filter>Файлы заголовков</Filter>
     </ClCompile>
-    <ClCompile Include="TemplateSet.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Set.h">
